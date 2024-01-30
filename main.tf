@@ -1,7 +1,6 @@
 ############ PROVIDER BLOCK ############
 provider "aws" {
   region = "ap-south-1"
-  profile = "default"
 }
 
 ############ SAVING TF STATE FILE #########
