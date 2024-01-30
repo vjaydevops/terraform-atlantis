@@ -1,4 +1,7 @@
-profile = "default"
+############ PROVIDER BLOCK ############
+provider "aws" {
+  region = "<EC2-REGION>"
+  profile = "default"
 }
 
 ############ SAVING TF STATE FILE #########
@@ -12,7 +15,6 @@ terraform {
 }
 
 ################# EC2 INSTANCE CREATION #########
-
 resource "aws_instance" "this" {
   ami = "ami-03f4878755434977f"
   instance_type = "t2.micro"
