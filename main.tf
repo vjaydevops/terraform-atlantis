@@ -16,6 +16,14 @@ resource "aws_instance" "this" {
   instance_type = "t2.micro"
 
   tags = {
-    Name = "terraform-atlantis"
+    Name = "terraform-atlantis-demo"
+  }
+}
+resource "aws_s3_bucket" "example" {
+  bucket = "my-tf-test-bucket-9876random"
+
+  tags = {
+    Name        = "My bucket"
+    Environment = "Dev"
   }
 }
