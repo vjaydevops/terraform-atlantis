@@ -1,24 +1,31 @@
-version: 2
+version: 3
+parallel_plan: true
+parallel_apply: true
 projects:
 - name: develop
   dir: dev
   workspace: dev
-  workflow: terrahelp
+  workflow: myworkflow
   apply_requirements: [mergeable, approved]
+  autoplan:
+    enabled: false
+    when_modified: ["*.tf*", ".terraform.lock.hcl"]
 - name: test
   dir: stage
   workspace: stage
-  workflow: terrahelp
+  workflow: myworkflow
   apply_requirements: [mergeable]
+  autoplan:
+    enabled: true
+    when_modified: ["*.tf*", ".terraform.lock.hcl"]
 workflows:
-  terrahelp:
+  myworkflow:
     plan:
       steps:
       - init
-      - run: terraform workspace select $WORKSPACE || terraform workspace new $WORKSPACE
-      - run: terraform plan -no-color -out $PLANFILE | terrahelp mask
+      - plan:
+          extra_args: ["-lock", "false"]
+      - run: my-custom-command arg1 arg2
     apply:
       steps:
-      - init
-      - run: terraform workspace select $WORKSPACE || terraform workspace new $WORKSPACE
-      - run: terraform apply -no-color $PLANFILE | terrahelp mask
+      - apply
