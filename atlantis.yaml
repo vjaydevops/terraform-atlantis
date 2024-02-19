@@ -6,7 +6,7 @@ projects:
   workflow: terrahelp
   apply_requirements: [mergeable, approved]
 - name: test
-  dir: infra/stage
+  dir: stage
   workspace: stage
   workflow: terrahelp
   apply_requirements: [mergeable]
