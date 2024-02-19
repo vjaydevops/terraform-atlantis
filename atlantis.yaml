@@ -5,7 +5,6 @@ projects:
 - name: develop
   dir: dev
   workspace: dev
-  workflow: myworkflow
   apply_requirements: [mergeable, approved]
   autoplan:
     enabled: false
@@ -13,19 +12,8 @@ projects:
 - name: test
   dir: stage
   workspace: stage
-  workflow: myworkflow
   apply_requirements: [mergeable]
   autoplan:
     enabled: true
     when_modified: ["*.tf*", ".terraform.lock.hcl"]
-workflows:
-  myworkflow:
-    plan:
-      steps:
-      - init
-      - plan:
-          extra_args: ["-lock", "false"]
-      - run: my-custom-command arg1 arg2
-    apply:
-      steps:
-      - apply
+
