@@ -8,14 +8,25 @@ projects:
   workflow: terraform
   apply_requirements: [mergeable]
   autoplan:
-    enabled: false
+    enabled: true
     when_modified: ["*.tf*", "./dev/*.tf ".terraform.lock.hcl"]
-- name: test
+- name: stage
   dir: stage
   workspace: stage
-  workflow: terraform
+  workflow: test
   apply_requirements: [mergeable]
   autoplan:
     enabled: true
     when_modified: ["*.tf*", ".terraform.lock.hcl"]
-
+workflows:
+  test:
+    plan:
+      steps:
+      - init
+      - run: terraform workspace select $WORKSPACE || terraform workspace new $WORKSPACE
+      - run: terraform plan -no-color -out $PLANFILE | terrahelp mask
+    apply:
+      steps:
+      - init
+      - run: terraform workspace select $WORKSPACE || terraform workspace new $WORKSPACE
+      - run: terraform apply -no-color $PLANFILE | terrahelp mask
