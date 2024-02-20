@@ -6,10 +6,10 @@ projects:
   dir: dev
   workspace: dev
   workflow: default
-  apply_requirements: [mergeable, approved]
+  apply_requirements: [mergeable]
   autoplan:
     enabled: false
-    when_modified: ["*.tf*", ".terraform.lock.hcl"]
+    when_modified: ["*.tf*", "./dev/*.tf ".terraform.lock.hcl"]
 - name: test
   dir: stage
   workspace: stage
