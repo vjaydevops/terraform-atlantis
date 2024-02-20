@@ -5,7 +5,7 @@ projects:
 - name: develop
   dir: dev
   workspace: dev
-  workflow: default
+  workflow: terraform
   apply_requirements: [mergeable]
   autoplan:
     enabled: false
@@ -13,7 +13,7 @@ projects:
 - name: test
   dir: stage
   workspace: stage
-  workflow: default
+  workflow: terraform
   apply_requirements: [mergeable]
   autoplan:
     enabled: true
