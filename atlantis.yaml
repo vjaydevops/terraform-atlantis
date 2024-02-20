@@ -5,6 +5,7 @@ projects:
 - name: develop
   dir: dev
   workspace: dev
+  workflow: default
   apply_requirements: [mergeable, approved]
   autoplan:
     enabled: false
@@ -12,6 +13,7 @@ projects:
 - name: test
   dir: stage
   workspace: stage
+  workflow: default
   apply_requirements: [mergeable]
   autoplan:
     enabled: true
