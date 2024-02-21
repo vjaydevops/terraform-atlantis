@@ -5,28 +5,26 @@ projects:
 - name: develop
   dir: dev
   workspace: dev
-  workflow: terraform
-  apply_requirements: [mergeable]
+  workflow: default
+  apply_requirements: []
   autoplan:
     enabled: true
-    when_modified: ["*.tf*", "./dev/*.tf ".terraform.lock.hcl"]
 - name: stage
   dir: stage
   workspace: stage
-  workflow: terraform
-  apply_requirements: [mergeable]
+  workflow: default
+  apply_requirements: []
   autoplan:
     enabled: true
-    when_modified: ["*.tf*", ".terraform.lock.hcl"]
-workflows:
-  test:
-    plan:
-      steps:
-      - init
-      - run: terraform workspace select $WORKSPACE || terraform workspace new $WORKSPACE
-      - run: terraform plan -no-color -out $PLANFILE | terrahelp mask
-    apply:
-      steps:
-      - init
-      - run: terraform workspace select $WORKSPACE || terraform workspace new $WORKSPACE
-      - run: terraform apply -no-color $PLANFILE | terrahelp mask
+# workflows:
+#   test:
+#     plan:
+#       steps:
+#       - init
+#       - run: terraform workspace select $WORKSPACE || terraform workspace new $WORKSPACE
+#       - run: terraform plan -no-color -out $PLANFILE | terrahelp mask
+#     apply:
+#       steps:
+#       - init
+#       - run: terraform workspace select $WORKSPACE || terraform workspace new $WORKSPACE
+#       - run: terraform apply -no-color $PLANFILE | terrahelp mask
