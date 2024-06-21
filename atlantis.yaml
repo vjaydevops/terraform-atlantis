@@ -5,14 +5,14 @@ projects:
 - name: develop
   dir: dev
   workspace: dev
-    #  workflow: default
+  workflow: default
   apply_requirements: []
   autoplan:
     enabled: true
 - name: stage
   dir: stage
   workspace: stage
-    #workflow: default
+  workflow: default
   apply_requirements: []
   autoplan:
     enabled: true
