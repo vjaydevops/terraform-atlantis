@@ -6,12 +6,19 @@ projects:
   dir: dev
   workspace: dev
   workflow: default
-  apply_requirements: []
+  apply_requirements: [approved]
   autoplan:
     enabled: true
 - name: stage
   dir: stage
   workspace: stage
+  workflow: default
+  apply_requirements: []
+  autoplan:
+    enabled: true
+- name: new-test
+  dir: dev
+  workspace: new-dev
   workflow: default
   apply_requirements: []
   autoplan:
