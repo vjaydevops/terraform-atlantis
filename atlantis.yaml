@@ -1,0 +1,37 @@
+version: 3
+parallel_plan: true
+parallel_apply: true
+projects:
+- name: develop
+  dir: dev
+  workspace: dev
+  workflow: default
+  apply_requirements: [approved]
+  autoplan:
+    enabled: true
+- name: stage
+  dir: stage
+  workspace: stage
+  workflow: default
+  apply_requirements: []
+  autoplan:
+    enabled: true
+- name: new-test
+  dir: dev
+  workspace: new-dev
+  workflow: default
+  apply_requirements: []
+  autoplan:
+    enabled: true
+# workflows:
+#   test:
+#     plan:
+#       steps:
+#       - init
+#       - run: terraform workspace select $WORKSPACE || terraform workspace new $WORKSPACE
+#       - run: terraform plan -no-color -out $PLANFILE | terrahelp mask
+#     apply:
+#       steps:
+#       - init
+#       - run: terraform workspace select $WORKSPACE || terraform workspace new $WORKSPACE
+#       - run: terraform apply -no-color $PLANFILE | terrahelp mask
