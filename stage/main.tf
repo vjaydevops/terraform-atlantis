@@ -4,7 +4,7 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    bucket = "my-s3-remote-backend-83264873246"
+    bucket = "my-s3-backend-for-terraform6785759"
     key = "atlantis/stage/terraform.tfstate"
     region = "ap-south-1"
     profile = "default"
