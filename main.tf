@@ -4,7 +4,7 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    bucket = "my-s3-remote-backend-83264873246"
+    bucket = "my-s3-backend-for-terraform6785759"
     key = "atlantis/terraform.tfstate"
     region = "ap-south-1"
     profile = "default"
@@ -12,7 +12,7 @@ terraform {
 }
 
 resource "aws_instance" "this" {
-  ami = "ami-0e1d06225679bc1c5"
+  ami = "ami-0dee22c13ea7a9a67"
   instance_type = "t2.micro"
 
   tags = {
