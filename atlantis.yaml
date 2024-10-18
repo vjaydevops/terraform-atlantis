@@ -8,9 +8,15 @@ projects:
   apply_requirements: []
   autoplan:
     enabled: true
-- name: stage
+- name: stage-1
   dir: stage
   workspace: stage
+  apply_requirements: [approved, mergeable]
+  autoplan:
+    enabled: true
+- name: stage-2
+  dir: stage
+  workspace: new-ws
   apply_requirements: [approved, mergeable]
   autoplan:
     enabled: true
