@@ -9,6 +9,14 @@ projects:
   autoplan:
     enabled: true
     when_modified: ["dev/*.tf*", ".terraform.lock.hcl"]
+- name: develop-2
+  dir: dev
+  workspace: dev-name
+  workflow: custom-tfvars
+  apply_requirements: []
+  autoplan:
+    enabled: true
+    when_modified: ["dev/*.tf*", ".terraform.lock.hcl"]
 - name: stage-1
   dir: stage
   workspace: stage
@@ -21,6 +29,19 @@ projects:
   apply_requirements: [approved, mergeable]
   autoplan:
     enabled: true
+workflows:
+  custom-tfvars:
+    plan:
+      steps:
+      - init
+      - plan:
+          extra_args: ["-var-file", "${terraform.workspace}.tfvars"]
+    apply:
+      steps:
+      - apply:
+          extra_args: ["-var-file", "${terraform.workspace}.tfvars"]
+    # NOTE: no need to define the apply stage because it will default
+    # to the normal apply stage.
 # workflows:
 #   test:
 #     plan:
