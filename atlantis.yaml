@@ -5,19 +5,13 @@ projects:
 - name: develop
   dir: dev
   workspace: dev
-  apply_requirements: [approved]
+  apply_requirements: []
   autoplan:
     enabled: true
 - name: stage
   dir: stage
   workspace: stage
-  apply_requirements: []
-  autoplan:
-    enabled: true
-- name: new-test
-  dir: dev
-  workspace: new-dev
-  apply_requirements: []
+  apply_requirements: [approved, mergable]
   autoplan:
     enabled: true
 # workflows:
