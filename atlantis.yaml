@@ -11,7 +11,7 @@ projects:
 - name: stage
   dir: stage
   workspace: stage
-  apply_requirements: [approved, mergable]
+  apply_requirements: [approved, mergeable]
   autoplan:
     enabled: true
 # workflows:
