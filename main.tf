@@ -19,3 +19,4 @@ resource "aws_instance" "this" {
     Name = "terraform-atlantis-demo"
   }
 }
+
