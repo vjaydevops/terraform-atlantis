@@ -9,7 +9,12 @@ projects:
   autoplan:
     enabled: true
     when_modified: ["dev/*.tf*"]
-
+- name: develop-vijay
+  dir: dev
+  workspace: dev-vj
+  apply_requirements: []
+  autoplan:
+    enabled: true
 - name: preprod
   dir: stage
   workspace: preprod1
