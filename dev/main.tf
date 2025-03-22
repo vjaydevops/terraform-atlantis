@@ -16,6 +16,6 @@ resource "aws_instance" "this" {
   instance_type = "t2.micro"
 
   tags = {
-    Name = "custome-dev-ec2"
+    Name = "custome-dev-ec2-instance"
   }
 }
