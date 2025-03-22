@@ -8,7 +8,7 @@ projects:
   apply_requirements: []
   autoplan:
     enabled: true
-    when_modified: ["dev/*.tf*", ".terraform.lock.hcl"]
+    when_modified: ["dev/*.tf*"]
 
 - name: preprod
   dir: stage
