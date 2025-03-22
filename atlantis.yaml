@@ -4,42 +4,30 @@ parallel_apply: true
 projects:
 - name: develop
   dir: dev
-  workspace: dev
+  workspace: dev1
   apply_requirements: []
   autoplan:
     enabled: true
     when_modified: ["dev/*.tf*", ".terraform.lock.hcl"]
-- name: develop-2
-  dir: dev
-  workspace: dev-name
-  workflow: custom-tfvars
-  apply_requirements: []
-  autoplan:
-    enabled: true
-    when_modified: ["dev/*.tf*", ".terraform.lock.hcl"]
-- name: stage-1
+
+- name: preprod
   dir: stage
-  workspace: stage
+  workspace: preprod1
   apply_requirements: [approved, mergeable]
   autoplan:
     enabled: true
-- name: stage-2
-  dir: stage
-  workspace: new-ws
-  apply_requirements: [approved, mergeable]
-  autoplan:
-    enabled: true
-workflows:
-  custom-tfvars:
-    plan:
-      steps:
-      - init
-      - plan:
-          extra_args: ["-var-file", "${terraform.workspace}.tfvars"]
-    apply:
-      steps:
-      - apply:
-          extra_args: ["-var-file", "${terraform.workspace}.tfvars"]
+
+# workflows:
+#   custom-tfvars:
+#     plan:
+#       steps:
+#       - init
+#       - plan:
+#           extra_args: ["-var-file", "${terraform.workspace}.tfvars"]
+#     apply:
+#       steps:
+#       - apply:
+#           extra_args: ["-var-file", "${terraform.workspace}.tfvars"]
     # NOTE: no need to define the apply stage because it will default
     # to the normal apply stage.
 # workflows:
