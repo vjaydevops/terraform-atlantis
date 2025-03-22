@@ -2,12 +2,12 @@ provider "aws" {
   region = "ap-south-1"
 }
 
-terraform {
-  backend "s3" {
-    bucket = "my-s3-backend-for-terraform6785759"
-    key = "atlantis/terraform.tfstate"
-    region = "ap-south-1"
-    profile = "default"
+resource "aws_s3_bucket" "example" {
+  bucket = "my-tf-test-bucket-itd-tfc"
+
+  tags = {
+    Name        = "s3-from-tfc"
+    Environment = "Dev"
   }
 }
 
@@ -15,7 +15,7 @@ resource "aws_instance" "this" {
   ami = "ami-0dee22c13ea7a9a67"
   instance_type = "t2.micro"
   tags = {
-    Name = "terraform-cloud-demo"
+    Name = "terraform-cloud-ec2"
   }
 }
 
