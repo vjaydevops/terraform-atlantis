@@ -3,7 +3,7 @@ terraform {
     organization = "itd-demo"
 
     workspaces {
-      name = "itd-terraform-develop"
+      name = "itd-dev-aws-infra"
     }
   }
 }
