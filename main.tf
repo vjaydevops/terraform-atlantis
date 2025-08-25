@@ -11,10 +11,11 @@ terraform {
   }
 }
 
-resource "aws_instance" "this" {
-  ami = "ami-0f918f7e67a3323f0"
-  instance_type = "t2.micro"
+resource "aws_s3_bucket" "example" {
+  bucket = "my-tf-test-bucket"
+
   tags = {
-    Name = "my-ec2-dev2"
+    Name        = "My bucket"
+    Environment = "Dev"
   }
 }
