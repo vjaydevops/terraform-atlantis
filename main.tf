@@ -15,6 +15,6 @@ resource "aws_instance" "this" {
   ami = "ami-0f918f7e67a3323f0"
   instance_type = "t2.micro"
   tags = {
-    Name = "terraform-atlantis-demo"
+    Name = "my-ec2-dev2"
   }
 }
