@@ -19,7 +19,6 @@ projects:
   dir: stage
   workspace: production
   apply_requirements: [approved, mergeable]
-  workflow: prod
   autoplan:
     enabled: false
 
