@@ -4,7 +4,7 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    bucket = "my-s3-backend-for-terraform6785759"
+    bucket = "aws-cloudtrail-logs-itd-demo-2025"
     key = "atlantis/dev/terraform.tfstate"
     region = "ap-south-1"
     profile = "default"
@@ -12,10 +12,12 @@ terraform {
 }
 
 resource "aws_instance" "this" {
-  ami = "ami-03f4878755434977f"
+  ami = "ami-0f918f7e67a3323f0"
   instance_type = "t2.small"
 
   tags = {
-    Name = "custome-dev-ec2-instance"
+    Name = "custom-dev-ec2-instance-demo"
   }
 }
+
+

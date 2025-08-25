@@ -4,7 +4,7 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    bucket = "my-s3-backend-for-terraform6785759"
+    bucket = "aws-cloudtrail-logs-itd-demo-2025"
     key = "atlantis/stage/terraform.tfstate"
     region = "ap-south-1"
     profile = "default"
@@ -19,3 +19,4 @@ resource "aws_instance" "this" {
     Name = "${terraform.workspace}-ec2"
   }
 }
+
