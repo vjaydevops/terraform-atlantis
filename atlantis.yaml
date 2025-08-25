@@ -1,0 +1,49 @@
+version: 3
+parallel_plan: true
+parallel_apply: true
+projects:
+- name: develop
+  dir: dev
+  workspace: dev1
+  apply_requirements: []
+  autoplan:
+    enabled: true
+    when_modified: ["dev/*.tf*"]
+- name: develop-vijay
+  dir: dev
+  workspace: dev-vj
+  apply_requirements: []
+  autoplan:
+    enabled: true
+- name: preprod
+  dir: stage
+  workspace: preprod1
+  apply_requirements: [approved, mergeable]
+  autoplan:
+    enabled: true
+
+# workflows:
+#   custom-tfvars:
+#     plan:
+#       steps:
+#       - init
+#       - plan:
+#           extra_args: ["-var-file", "${terraform.workspace}.tfvars"]
+#     apply:
+#       steps:
+#       - apply:
+#           extra_args: ["-var-file", "${terraform.workspace}.tfvars"]
+    # NOTE: no need to define the apply stage because it will default
+    # to the normal apply stage.
+# workflows:
+#   test:
+#     plan:
+#       steps:
+#       - init
+#       - run: terraform workspace select $WORKSPACE || terraform workspace new $WORKSPACE
+#       - run: terraform plan -no-color -out $PLANFILE | terrahelp mask
+#     apply:
+#       steps:
+#       - init
+#       - run: terraform workspace select $WORKSPACE || terraform workspace new $WORKSPACE
+#       - run: terraform apply -no-color $PLANFILE | terrahelp mask
