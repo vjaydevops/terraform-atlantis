@@ -15,6 +15,7 @@ projects:
   apply_requirements: [approved, mergeable]
   autoplan:
     enabled: true
+    when_modified: ["*.tf*"]
 - name: prod
   dir: stage
   workspace: production
